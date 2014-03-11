@@ -1,7 +1,5 @@
 package br.com.hrdev.estruturas;
 
-import static java.lang.System.out;
-
 public class ListaEncadeada<T extends Comparable<T>> {
 	
 	private Nodo<T> head; // will be a Nodo
@@ -16,7 +14,7 @@ public class ListaEncadeada<T extends Comparable<T>> {
 	{
 		Nodo<?> nodo = head;
 		do {
-			out.println(nodo.getData());
+			System.out.println(nodo.getData());
 			nodo = nodo.getNext();
 		} while (nodo != null);
 	}
@@ -47,16 +45,26 @@ public class ListaEncadeada<T extends Comparable<T>> {
 		tail = novo;
 	}
 	
-	public static void main(String[] args)
-	{
-		ListaEncadeada<String> lista = new ListaEncadeada<String>();
+	public void remove(Nodo<T> atual){
+		Nodo<T> nodo = head;
+		Nodo<T> prev = null;
 		
-		lista.insert(new Nodo<String>("Rafael"));
-		lista.insert(new Nodo<String>("Tiago"), lista.getHead());
-		lista.append(new Nodo<String>("Mauro"));
-		lista.insert(new Nodo<String>("Carlos"));
-		
-		lista.print();
+		if(nodo != null){
+			do {
+				if(nodo == atual){
+					if(prev != null){
+						prev.setNext(atual.getNext());
+					} else {
+						head = atual.getNext();
+					}
+					if(tail == atual)
+						tail = prev;
+				} else {
+					prev = nodo;
+					nodo = nodo.getNext();
+				}
+			} while (nodo != null);
+		}		
 	}
 
 }
