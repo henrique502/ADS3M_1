@@ -41,7 +41,11 @@ public class Player {
 	}
 	
 	public void shotHit(){
-		this.life += 3;
+		this.life += 2;
+	}
+	
+	public void shotDestroy(){
+		this.life += 4;
 	}
 	
 	public boolean isDead(){

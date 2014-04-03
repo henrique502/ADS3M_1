@@ -39,6 +39,7 @@ public class HomeController {
 			
 			GameView.separador();
 		} while(!gameHasEnd());
+		
 		GameView.showVictory(players);
 	}
 	
@@ -48,9 +49,17 @@ public class HomeController {
 			try {
 				int[] point = Console.nextPoint();
 				int status = enemy.getBattlefield().hitTarget(point);
+				
 				if(status == 1){
-					player.shotHit();
-					GameView.shotHit();
+					Navio navio = enemy.getBattlefield().getNavioByPoint(point);
+					
+					if(navio.isDead()){
+						player.shotDestroy();
+						GameView.shipIsDestroy(navio);
+					} else {
+						player.shotHit();
+						GameView.shotHit();
+					}
 					break;
 				}
 				

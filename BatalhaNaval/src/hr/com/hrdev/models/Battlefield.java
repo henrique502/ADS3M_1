@@ -1,7 +1,6 @@
 package hr.com.hrdev.models;
 
 import hr.com.hrdev.models.navios.Navio;
-import hr.com.hrdev.views.GameView;
 
 import java.util.Random;
 
@@ -85,6 +84,12 @@ public class Battlefield {
 		int limit = size - shipSize;
 		return random.nextInt(limit);
 	}
+	
+	public Navio getNavioByPoint(int[] point){
+		if(map[point[0]][point[1]] != null)
+			return map[point[0]][point[1]];
+		return null;
+	}
 
 	public int hitTarget(int[] point) {
 		if(field[point[0]][point[1]] == 0){
@@ -92,10 +97,6 @@ public class Battlefield {
 				Navio navio = map[point[0]][point[1]];
 				field[point[0]][point[1]] = 1;
 				navio.hit();
-				
-				if(navio.isDead())
-					GameView.shipIsDestroy(navio);
-				
 				return 1;
 			} else {
 				field[point[0]][point[1]] = -1;
