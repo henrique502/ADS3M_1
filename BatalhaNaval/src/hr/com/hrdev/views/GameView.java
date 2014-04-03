@@ -1,5 +1,6 @@
 package hr.com.hrdev.views;
 import static java.lang.System.out;
+
 import hr.com.hrdev.models.Player;
 import hr.com.hrdev.models.navios.Navio;
 
@@ -76,10 +77,14 @@ public class GameView {
 			vencedor = players[0];
 			derrotado = players[1];	
 		}
-		out.println(vencedor + " venceu o " + derrotado + "!\nNavios restantes:");
-		for (int i = 0; i < vencedor.getNavioLength(); i++) {
-			if(!vencedor.getNavio(i).isDead())
-				out.println(" - " + vencedor.getNavio(i));
+		out.println(vencedor + " venceu o " + derrotado + "!\nNavios:");
+		Navio[] navios = vencedor.getNavios();
+		for (int i = 0; i < navios.length; i++) {
+			if(navios[i].isDead()){
+				out.println(" - " + navios[i] + ", Destruido");
+			} else {
+				out.println(" - " + navios[i] + ", " + navios[i].getLife() + "/" + navios[i].getSize());
+			}
 		}
 	}
 }

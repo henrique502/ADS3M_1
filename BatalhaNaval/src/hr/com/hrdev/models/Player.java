@@ -11,17 +11,13 @@ public class Player {
 	
 	public Player(String nome){
 		this.nome = nome;
-		this.life = 2; // 15
+		this.life = 15; // 15
 		this.navios = Navio.genrate();
 		this.battlefield = new Battlefield(this);
 	}
 	
 	public Battlefield getBattlefield(){
 		return this.battlefield;
-	}
-	
-	public int getNavioLength(){
-		return this.navios.length;
 	}
 	
 	public Navio getNavio(int index){
